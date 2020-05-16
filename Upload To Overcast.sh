@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh -f
-# Purpose: Service Station Test Script
+# Purpose: Service Station Script to uploaded a selected audio file(s) to Overcast
 #
 # From:	Timothy J. Luoma
 # Mail:	luomat at gmail dot com
@@ -14,12 +14,15 @@ else
 	PATH=/usr/local/scripts:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
 fi
 
+	# this is just a wrapper around growlnotify
 autoload msg
 
 GROWL_IMAGE="$HOME/Pictures/App Icons/Overcast/Overcast-512x512.png"
 
 if ((! $+commands[cloudyuploader] ))
 then
+
+	# Get it from <https://github.com/Andrew-Morozko/cloudy-uploader>
 
 	msg --sticky "'cloudyuploader' is required but not found in $PATH" >>/dev/stderr
 
