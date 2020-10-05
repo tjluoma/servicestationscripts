@@ -29,7 +29,33 @@ then
 	exit 1
 fi
 
-for i in "$@"
+
+TARGETED_URL=""
+MENU_KIND=-1
+SELECTED_ITEM_URLS=()
+
+IFS=""
+while [[ $# -gt 0 ]]; do
+    arg=$1
+    case $arg in
+        -targetedURL)
+            TARGETED_URL=$2 && shift && shift
+            ;;
+        -menuKind)
+            MENU_KIND=$2 && shift && shift
+            ;;
+        -selectedItemURLs)
+            shift
+            ;;
+        *)
+            SELECTED_ITEM_URLS+=($1) && shift
+            ;;
+    esac
+done
+
+
+
+for i in "${SELECTED_ITEM_URLS[@]}"
 do
 
 	[[ ! -e "$i" ]] && continue
