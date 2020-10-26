@@ -16,6 +16,10 @@ fi
 
 autoload msg
 
+GROWL_APP='Service Station'
+
+msg "$@"
+
 TARGETED_URL=""
 MENU_KIND=-1
 SELECTED_ITEM_URLS=()
@@ -45,7 +49,7 @@ do
 		# if it doesn't exist then we can't rename it, can we?
 	[[ ! -e "$PRESTRIP" ]] && continue
 
-	PRESTRIP=($i(:A))
+	PRESTRIP=($PRESTRIP(:A))
 
 	PARENT_DIR="$PRESTRIP:h"
 
@@ -53,10 +57,14 @@ do
 
 	if [[ "$PRESTRIP:t" == "$POSTSTRIP" ]]
 	then
+
 		msg --sticky "$PRESTRIP has no spaces"
+
 	else
 
 		command mv -vn "${PRESTRIP}" "${PARENT_DIR}/${POSTSTRIP}"
+
+		msg "Renamed '$PRESTRIP'"
 
 	fi
 
