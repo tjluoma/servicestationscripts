@@ -14,10 +14,16 @@ else
 	PATH=/usr/local/scripts:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
 fi
 
+zmodload zsh/datetime
+
+TIME=$(strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS")
+
+function timestamp { strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS" }
+
 	# this is just a wrapper around growlnotify
 autoload msg
 
-GROWL_IMAGE="$HOME/Pictures/App Icons/Overcast/Overcast-512x512.png"
+GROWL_IMAGE="$HOME/.config/growl/Overcast-512x512.png"
 
 if ((! $+commands[cloudyuploader] ))
 then
@@ -69,7 +75,7 @@ do
 	msg --sticky "Uploading
 	'$i:t'..."
 
-	cloudyuploader --silent "${i}"
+	cloudyuploader "${i}" 2>&1 | tee -a "/tmp/$NAME.$TIME.txt"
 
 	EXIT="$?"
 
