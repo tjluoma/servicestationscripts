@@ -14,7 +14,7 @@ else
 	PATH=/usr/local/scripts:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:/bin
 fi
 
-DIR="$HOME/Action/Send-To-Backup"
+DIR="$HOME/Action/Send-to-Dropbox-Backups"
 
 	# this is just a wrapper around growlnotify
 autoload msg
