@@ -59,7 +59,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
+DIR="$HOME/Action/Overcast-Upload"
 
 for i in "${SELECTED_ITEM_URLS[@]}"
 do
@@ -68,29 +68,36 @@ do
 
 	[[ -d "$i" ]] && continue
 
-	# echo "i is >$i<" | tee -a "/tmp/$NAME.log"
-
-	GROWL_ID="$i"
-
-	msg --sticky "Uploading
-	'$i:t'..."
-
-	cloudyuploader "${i}" 2>&1 | tee -a "/tmp/$NAME.$TIME.txt"
-
-	EXIT="$?"
-
-	if [[ "$EXIT" == "0" ]]
+	if [[ -d "$DIR" ]]
 	then
-
-		afplay /System/Library/Sounds/Glass.aiff
-
-		msg "Finished
-		'$i:t'!"
+		mv -vn "${i}" "$DIR"
 
 	else
 
-		msg --sticky "FAILED: '$i:t'."
+		echo "i is >$i<" | tee -a "/tmp/$NAME.log"
 
+		GROWL_ID="$i"
+
+		msg --sticky "Uploading
+		'$i:t'..."
+
+		cloudyuploader "${i}" 2>&1 | tee -a "/tmp/$NAME.$TIME.txt"
+
+		EXIT="$?"
+
+		if [[ "$EXIT" == "0" ]]
+		then
+
+			afplay /System/Library/Sounds/Glass.aiff
+
+			msg "Finished
+			'$i:t'!"
+
+		else
+
+			msg --sticky "FAILED: '$i:t'."
+
+		fi
 	fi
 
 done
