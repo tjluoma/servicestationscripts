@@ -44,6 +44,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 
+msg "Before Loop"
 
 for i in "${SELECTED_ITEM_URLS[@]}"
 do
@@ -86,6 +87,8 @@ do
 
 		mv -vn "$i" /Applications/ &&
 		msg "Moved '$i:t' to /Applications/"
+
+		open -R "/Applications/$i:t"
 
 	else
 
