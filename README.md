@@ -11,3 +11,7 @@ Note: These scripts _must_ be installed at
 
 and must be executable (`chmod 755 Example.sh`) to work.
 
+## Free to use, no warranty expressed or implied
+
+If this breaks your Mac, you get full ownership of all of the pieces.
+
