@@ -11,6 +11,11 @@ Note: These scripts _must_ be installed at
 
 and must be executable (`chmod 755 Example.sh`) to work.
 
+Be sure to use quotes if your script name has spaces in it:
+
+	chmod 755 'This Is My Script.sh'
+
+
 ## Free to use, no warranty expressed or implied
 
 If this breaks your Mac, you get full ownership of all of the pieces.
